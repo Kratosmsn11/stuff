@@ -8,18 +8,38 @@ const react_1 = __importDefault(require("react"));
 const server_1 = __importDefault(require("react-dom/server"));
 const app = (0, express_1.default)();
 const port = 3000;
-app.get("/todo", function (req, res) {
+// use function keyword if it is standalone
+function App(props) {
+    // TODO: add more styles, hello is centered on the screen (both vertical & horizontal).
     const styles = {
         header: { color: "grey", backgroundColor: "black" },
     };
-    const s = `<h2 style="background-color: black">hello</h2>`;
-    const t = server_1.default.renderToString(react_1.default.createElement("h2", { style: styles.header }, "hello"));
+    return (react_1.default.createElement("html", null,
+        react_1.default.createElement("head", null,
+            react_1.default.createElement("title", null, " Web dev "),
+            react_1.default.createElement("script", { src: "/client.js" })),
+        react_1.default.createElement("body", null,
+            react_1.default.createElement("h2", { style: styles.header },
+                "hello, your lucky number is ",
+                props.luckyNumber),
+            react_1.default.createElement("div", null, "Loading..."))));
+}
+// TODO: Get prettier to format on save.
+app.get("/todo", function (req, res) {
+    // can use arrow func here
+    // TODO: need to be a random int between [1,100]
+    const num = Math.floor(Math.random() * 100 + 1);
+    const t = server_1.default.renderToStaticMarkup(react_1.default.createElement(App, { luckyNumber: num }));
     res.send(t);
+});
+// TODO: how to make it send content-type to javascript.
+app.get("/client.js", (req, res) => {
+    res.send(`alert("hello")`);
 });
 app.get("*", (req, res) => {
     res.redirect("/todo");
 });
-app.set("x-powered-by", "gws");
+app.disable("x-powered-by"); // set for gws
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
