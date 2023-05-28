@@ -11,7 +11,7 @@ type Props = { luckyNumber: number };
 function App(props: Props) {
   // TODO: add more styles, hello is centered on the screen (both vertical & horizontal).
   const styles = {
-    header: { color: "grey", backgroundColor: "black" },
+    body: { color: "white", backgroundColor: "black", alignItems: "center" },
   };
 
   return (
@@ -20,10 +20,8 @@ function App(props: Props) {
         <title> Web dev </title>
         <script src="/client.js" />
       </head>
-      <body>
-        <h2 style={styles.header}>
-          hello, your lucky number is {props.luckyNumber}
-        </h2>
+      <body style={styles.body}>
+        <p>hello, your lucky number is {props.luckyNumber}</p>
         <div>Loading...</div>
       </body>
     </html>

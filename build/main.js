@@ -12,14 +12,14 @@ const port = 3000;
 function App(props) {
     // TODO: add more styles, hello is centered on the screen (both vertical & horizontal).
     const styles = {
-        header: { color: "grey", backgroundColor: "black" },
+        body: { color: "white", backgroundColor: "black", alignItems: "center" },
     };
     return (react_1.default.createElement("html", null,
         react_1.default.createElement("head", null,
             react_1.default.createElement("title", null, " Web dev "),
             react_1.default.createElement("script", { src: "/client.js" })),
-        react_1.default.createElement("body", null,
-            react_1.default.createElement("h2", { style: styles.header },
+        react_1.default.createElement("body", { style: styles.body },
+            react_1.default.createElement("p", null,
                 "hello, your lucky number is ",
                 props.luckyNumber),
             react_1.default.createElement("div", null, "Loading..."))));
@@ -27,7 +27,7 @@ function App(props) {
 // TODO: Get prettier to format on save.
 app.get("/todo", function (req, res) {
     // can use arrow func here
-    // TODO: need to be a random int between [1,100]
+    // TODO: need to be a random int between [8,121]
     const num = Math.floor(Math.random() * 100 + 1);
     const t = server_1.default.renderToStaticMarkup(react_1.default.createElement(App, { luckyNumber: num }));
     res.send(t);
