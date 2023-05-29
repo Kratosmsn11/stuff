@@ -14,7 +14,13 @@ const port = 3000;
 function App(props) {
     // TODO: add more styles, text needs to vertically centered on the screen.
     const styles = {
-        body: { color: "white", backgroundColor: "black", alignItems: "center" },
+        body: {
+            maxHeight: "100vh",
+            color: "white",
+            backgroundColor: "black",
+            alignItems: "center",
+            justifyContent: "center",
+        },
     };
     return (react_1.default.createElement("html", null,
         react_1.default.createElement("head", null,
@@ -23,9 +29,7 @@ function App(props) {
         react_1.default.createElement("body", { style: styles.body },
             react_1.default.createElement("p", { style: {
                     background: "red",
-                    textAlign: "center",
                     justifyContent: "center",
-                    verticalAlign: "center",
                 } },
                 "hello, your lucky number is ",
                 props.luckyNumber),
@@ -38,7 +42,7 @@ app.get("/todo", function (req, res) {
     const t = server_1.default.renderToStaticMarkup(react_1.default.createElement(App, { luckyNumber: num }));
     res.send(t);
 });
-// TODO: how to make it send content-type to javascript.
+// TODO: look up correct content-type for javascript & how to make it send content-type to javascript.
 app.get("/client.js", (req, res) => {
     // we have 2 readFile methods async is a bit better.
     const s = fs_1.default.readFileSync("src/client.js");

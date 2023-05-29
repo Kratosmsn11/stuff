@@ -14,7 +14,13 @@ type Props = { luckyNumber: number };
 function App(props: Props) {
   // TODO: add more styles, text needs to vertically centered on the screen.
   const styles = {
-    body: { color: "white", backgroundColor: "black", alignItems: "center" },
+    body: {
+      maxHeight: "100vh",
+      color: "white",
+      backgroundColor: "black",
+      alignItems: "center",
+      justifyContent: "center",
+    },
   };
 
   return (
@@ -27,9 +33,7 @@ function App(props: Props) {
         <p
           style={{
             background: "red",
-            textAlign: "center",
             justifyContent: "center",
-            verticalAlign: "center",
           }}
         >
           hello, your lucky number is {props.luckyNumber}
