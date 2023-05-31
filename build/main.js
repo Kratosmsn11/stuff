@@ -17,23 +17,27 @@ function App(props) {
         body: {
             maxHeight: "100vh",
             color: "white",
+            display: "flex",
             backgroundColor: "black",
             alignItems: "center",
+            justifyContent: "center",
+        },
+        para: {
+            background: "red",
             justifyContent: "center",
         },
     };
     return (react_1.default.createElement("html", null,
         react_1.default.createElement("head", null,
             react_1.default.createElement("title", null, " Web dev "),
+            react_1.default.createElement("script", { src: "https://unpkg.com/react@18.2/umd/react.development.js" }),
+            react_1.default.createElement("script", { src: "https://unpkg.com/react-dom@18.2/umd/react-dom.development.js" }),
             react_1.default.createElement("script", { src: "/client.js" })),
         react_1.default.createElement("body", { style: styles.body },
-            react_1.default.createElement("p", { style: {
-                    background: "red",
-                    justifyContent: "center",
-                } },
+            react_1.default.createElement("p", { style: styles.para },
                 "hello, your lucky number is ",
                 props.luckyNumber),
-            react_1.default.createElement("div", null, "Loading..."))));
+            react_1.default.createElement("div", { id: "root" }, "Loading..."))));
 }
 app.get("/todo", function (req, res) {
     // can use arrow func here
@@ -43,10 +47,20 @@ app.get("/todo", function (req, res) {
     res.send(t);
 });
 // TODO: look up correct content-type for javascript & how to make it send content-type to javascript.
+// TODO: use promises for the same.
 app.get("/client.js", (req, res) => {
     // we have 2 readFile methods async is a bit better.
-    const s = fs_1.default.readFileSync("src/client.js");
-    res.send(s);
+    fs_1.default.readFile("build/client.js", (error, clientCode) => {
+        console.log("readFile");
+        if (error) {
+            // TODO: send a different HTTP status code (ex. 404) rather than 200 OK
+            res.send("Couldn't read the client code");
+            return;
+        }
+        res.send(clientCode);
+    });
+    console.log("bleh....");
+    // setTimeout(() => {}, 3000);
 });
 app.get("*", (req, res) => {
     res.redirect("/todo");
