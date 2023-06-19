@@ -32,8 +32,6 @@ function App(props: Props) {
     <html>
       <head>
         <title> Web dev </title>
-        <script src="https://unpkg.com/react@18.2/umd/react.development.js" />
-        <script src="https://unpkg.com/react-dom@18.2/umd/react-dom.development.js" />
         <script src="/client.js" />
       </head>
       <body style={styles.body}>
@@ -46,7 +44,7 @@ function App(props: Props) {
   );
 }
 
-app.get("/todo", function (req, res) {
+app.get("/", function (req, res) {
   // can use arrow func here
 
   // also can do [8,121]
@@ -75,9 +73,9 @@ app.get("/client.js", (req, res) => {
   // setTimeout(() => {}, 3000);
 });
 
-app.get("*", (req, res) => {
-  res.redirect("/todo");
-});
+// app.get("*", (req, res) => {
+//   res.redirect("/todo");
+// });
 
 app.disable("x-powered-by"); // set for gws
 

@@ -1,5 +1,5 @@
-// import React from "react";
-// import ReactDOMClient from "react-dom/client";
+import React from "react";
+import ReactDOMClient from "react-dom/client";
 
 function main() {
   //remember the exclaimation mark
@@ -16,7 +16,7 @@ function main() {
     <div>
       <p> Hello from the CLIENT </p>
       <p> heheheheheh... </p>
-      <p> evil laugh Mwahaahahahahaha... </p>
+      <p> evil laugh hehehehe... </p>
     </div>
   );
 }
