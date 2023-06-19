@@ -1,6 +1,28 @@
 import React from "react";
 import ReactDOMClient from "react-dom/client";
 
+function Board() {
+  return (
+    <div>
+      <div>
+        <div style={{ display: "inline", padding: "100px" }}>X</div>
+        <div style={{ display: "inline" }}>O</div>
+        <div style={{ display: "inline" }}>X</div>
+      </div>
+      <div>
+        <div style={{ display: "inline" }}>X</div>
+        <div style={{ display: "inline" }}>O</div>
+        <div style={{ display: "inline" }}>X</div>
+      </div>
+      <div>
+        <div style={{ display: "inline" }}>X</div>
+        <div style={{ display: "inline" }}>O</div>
+        <div style={{ display: "inline" }}>X</div>
+      </div>
+    </div>
+  );
+}
+
 function main() {
   //remember the exclaimation mark
   const rootDiv = document.getElementById("root")!;
@@ -10,15 +32,8 @@ function main() {
   // }
 
   // this will get rid on the error as we are not importing from the node modules
-  // @ts-expect-error
-  const rootElement = ReactDOM.createRoot(rootDiv);
-  rootElement.render(
-    <div>
-      <p> Hello from the CLIENT </p>
-      <p> heheheheheh... </p>
-      <p> evil laugh hehehehe... </p>
-    </div>
-  );
+  const rootElement = ReactDOMClient.createRoot(rootDiv);
+  rootElement.render(<Board />);
 }
 
 window.addEventListener("load", main, { once: true });

@@ -35,9 +35,6 @@ function App(props: Props) {
         <script src="/client.js" />
       </head>
       <body style={styles.body}>
-        <p style={styles.para}>
-          hello, your lucky number is {props.luckyNumber}
-        </p>
         <div id="root">Loading...</div>
       </body>
     </html>
